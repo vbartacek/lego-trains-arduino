@@ -178,7 +178,7 @@ Serial.println(newState);
   if (newState == -1) {
     state = state < 2 ? 3 : 1;
   }
-  else if (newState == state || !(state == 1 || newState == 1)) {
+  else if (newState < 2 && state < 2 || newState > 1 && state > 1 ) {
 Serial.print("TOGGLE IGNORE ");
 Serial.print(state);
 Serial.print(" -> ");
@@ -216,7 +216,8 @@ Serial.println("ZAVORY_NAHORU_DOLU -> NAHORU");
         pf.single_pwm(output, PWM_REV2);
     }
     else if (what == 2 || what == 3) {
-Serial.println("ZAVORY_NAHORU_DOLU -> DOLU - " + what);
+Serial.print("ZAVORY_NAHORU_DOLU -> DOLU - ");
+Serial.println(what);
         pf.single_pwm(output, PWM_FWD2);
     }
     else {
